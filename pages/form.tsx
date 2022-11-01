@@ -192,7 +192,7 @@ export default function Form() {
         />
         <br />
         <br />
-        <label htmlFor="text">Distance radius: </label>
+        <label htmlFor="text">Distance radius (km): </label>
         <div>Put 0 if u don't care about distance.</div>
         <input
           value={String(data!.radius)}
