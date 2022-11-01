@@ -121,6 +121,7 @@ export default function Form() {
           options={AGES}
           update={(value: string) => {
             setErrors("");
+            //@ts-ignore
             setData({ ...data, age: Number(value) });
           }}
         />
@@ -131,6 +132,7 @@ export default function Form() {
           name="preferredAges"
           options={AGES}
           update={(value: string[]) => {
+            //@ts-ignore
             setData({ ...data, preferredAges: value.join(";") });
           }}
         />
@@ -142,6 +144,7 @@ export default function Form() {
           options={GENDERS}
           update={(value: string) => {
             setErrors("");
+            //@ts-ignore
             setData({ ...data, gender: value });
           }}
         />
@@ -152,6 +155,7 @@ export default function Form() {
           name="preferredGenders"
           options={GENDERS}
           update={(value: string[]) => {
+            //@ts-ignore
             setData({ ...data, preferredGenders: value.join(";") });
           }}
         />
@@ -170,6 +174,7 @@ export default function Form() {
           onChange={(e) => {
             let val = e.currentTarget.value.trim();
             setErrors("");
+            //@ts-ignore
             setData({
               ...data,
               location: val.length > 200 ? val.substring(0, 200) : val,
@@ -190,6 +195,7 @@ export default function Form() {
           onChange={(e) => {
             let val = e.currentTarget.value;
             setErrors("");
+            //@ts-ignore
             setData({
               ...data,
               radius: Number(val),
@@ -205,6 +211,7 @@ export default function Form() {
           name="desc"
           update={(value: string) => {
             setErrors("");
+            //@ts-ignore
             setData({ ...data, desc: value });
           }}
         />
@@ -216,6 +223,7 @@ export default function Form() {
           name="matchDesc"
           update={(value: string) => {
             setErrors("");
+            //@ts-ignore
             setData({ ...data, matchDesc: value });
           }}
         />
