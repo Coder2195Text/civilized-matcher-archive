@@ -172,6 +172,15 @@ export default function Form() {
           name="location"
           maxLength={200}
           onChange={(e) => {
+            let val = e.currentTarget.value;
+            setErrors("");
+            //@ts-ignore
+            setData({
+              ...data,
+              location: val,
+            });
+          }}
+          onBlur={(e) => {
             let val = e.currentTarget.value.trim();
             setErrors("");
             //@ts-ignore
@@ -193,12 +202,12 @@ export default function Form() {
           name="location"
           maxLength={200}
           onChange={(e) => {
-            let val = e.currentTarget.value;
+            let val = Number(e.currentTarget.value);
             setErrors("");
             //@ts-ignore
             setData({
               ...data,
-              radius: Number(val),
+              radius: val > 24901 ? 24901 : val,
             });
           }}
         />

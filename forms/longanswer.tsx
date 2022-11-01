@@ -24,6 +24,10 @@ export default function LongAnswer({
           width: "90vw",
         }}
         onChange={(e) => {
+          let val = e.currentTarget.value;
+          update(val.length > maxLength ? val.substring(0, maxLength) : val);
+        }}
+        onBlur={(e) => {
           let val = e.currentTarget.value.trim();
           update(val.length > maxLength ? val.substring(0, maxLength) : val);
         }}
