@@ -22,6 +22,8 @@ export default function Dashboard() {
       <h1>Dashboard</h1>
       <br />
       <Link href="/form">Create/Edit Form</Link>
+      <br />
+      <Link href="/match">Find your match!</Link>
       <div className={styles.buttonWrapper}>
         <button
           style={{

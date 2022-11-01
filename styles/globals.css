@@ -43,3 +43,6 @@ label {
     background: black;
   }
 }
+div {
+  white-space: pre-wrap;
+}

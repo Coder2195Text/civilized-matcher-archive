@@ -63,8 +63,8 @@ export default function Form() {
 
   if (progress != "done") {
     return (
-      <div>
-        <h1>Loading</h1>
+      <div className={styles.wrapper}>
+        <h1>Loading Form...</h1>
       </div>
     );
   }
