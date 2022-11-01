@@ -1,0 +1,23 @@
+generator client {
+    provider        = "prisma-client-js"
+    previewFeatures = ["referentialIntegrity"]
+}
+
+datasource db {
+    provider             = "mysql"
+    url                  = env("DATABASE_URL")
+    referentialIntegrity = "prisma"
+}
+
+model User {
+    id               String @id
+    discordTag       String @unique
+    age              Int
+    preferredAges    String
+    gender           String
+    preferredGenders String
+    location         String
+    radius           Int
+    desc             String
+    matchDesc        String
+}
