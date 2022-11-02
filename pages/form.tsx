@@ -46,7 +46,7 @@ export default function Form() {
             age: 13,
             desc: "",
             discordTag: "",
-            gender: "",
+            gender: "Cis Male",
             id: value.id,
             location: "",
             matchDesc: "",
