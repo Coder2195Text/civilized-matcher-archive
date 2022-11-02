@@ -16,8 +16,8 @@ model User {
     preferredAges    String
     gender           String
     preferredGenders String
-    location         String
+    location         String @db.VarChar(200)
     radius           Int
-    desc             String
-    matchDesc        String
+    desc             String @db.VarChar(2000)
+    matchDesc        String @db.VarChar(2000)
 }
