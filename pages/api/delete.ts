@@ -14,16 +14,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             res.status(403).send("id?")
             return
         }
-        
     }
     if (!session && !admin) {
         res.status(401).send("Not logged in.")
         return
     }
-    const id = session?.user.id
+    let id = adminID ? adminID : session?.user.id
     const data = await prisma.user.delete({
         where: {
-            id: id ? id : adminID
+            id: id
         }
     })
     res.status(200).json(data)
