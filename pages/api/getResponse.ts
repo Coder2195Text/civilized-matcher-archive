@@ -19,7 +19,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
     const data = await prisma.user.findUnique({
         where: {
-            id: session ? session.user.id : req.query.id as string
+            id: !admin ? session.user.id : req.query.id as string
         }
     })
     res.status(200).json(data)
