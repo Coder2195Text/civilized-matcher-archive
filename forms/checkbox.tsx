@@ -34,15 +34,16 @@ export default function CheckBoxQuestion({
           <input
             type="checkbox"
             value={option}
-            name={name}
+            id={name + option}
             onChange={(e) => {
               const newVal = { ...selected, [option]: e.currentTarget.checked };
               setSelected(newVal);
               update(getSelectedDict(newVal));
             }}
             checked={value.includes(option)}
-          />{" "}
-          {option} <br />
+          />
+          <label htmlFor={name + option}>{option}</label>
+          <br />
         </span>
       ))}
     </div>
