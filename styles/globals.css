@@ -1,5 +1,7 @@
 html,
 body {
+  font-size: 20pt;
+  background-color: pink;
   padding: 0;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
@@ -7,8 +9,9 @@ body {
 }
 
 h1 {
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   margin-bottom: 0;
+  font-size: 30pt;
 }
 
 a {
@@ -25,12 +28,12 @@ input,
 select,
 textarea {
   font-family: Verdana, Geneva, 'Courier New', Courier, monospace;
-  font-size: 16pt;
+  font-size: 20pt;
 }
 
 label {
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-  font-size: 16pt;
+  font-size: 20pt;
 }
 
 @media (prefers-color-scheme: dark) {
