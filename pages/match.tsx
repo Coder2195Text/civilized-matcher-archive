@@ -41,36 +41,47 @@ function getSummary(matches: User[], accepted: boolean[]) {
         matches gender and age requirements, or you rejected all your matches.
       </div>
     );
-  return finalMatches.map((u) => {
-    index++;
-    return (
-      <div key={u.id}>
-        {index})
-        <br />
-        Username: {u.discordTag}
-        <br />
-        Age: {u.age}
-        <br />
-        Preferred Ages: {u.preferredAges.split(";").join(", ")}
-        <br />
-        Gender: {u.gender}
-        <br />
-        Preferred Gender: {u.preferredGenders.split(";").join(", ")}
-        <br />
-        Location: {u.location}
-        <br />
-        Preferred Location Radius: {u.radius}
-        <br />
-        Description:
-        <br />
-        {u.desc}
-        <br />
-        Description for match:
-        <br />
-        {u.matchDesc}
+  return (
+    <div>
+      <div>
+        Choose the one you like most, then DM them. If it fails, come back to
+        this website to get another match by "Find Your Match" on the home page.
+        If you guys work out, come back here and press "Delete Form" on the home
+        page.
       </div>
-    );
-  });
+      <br />
+      {finalMatches.map((u) => {
+        index++;
+        return (
+          <div key={u.id}>
+            {index})
+            <br />
+            Username: {u.discordTag}
+            <br />
+            Age: {u.age}
+            <br />
+            Preferred Ages: {u.preferredAges.split(";").join(", ")}
+            <br />
+            Gender: {u.gender}
+            <br />
+            Preferred Gender: {u.preferredGenders.split(";").join(", ")}
+            <br />
+            Location: {u.location}
+            <br />
+            Preferred Location Radius: {u.radius}
+            <br />
+            Description:
+            <br />
+            {u.desc}
+            <br />
+            Description for match:
+            <br />
+            {u.matchDesc}
+          </div>
+        );
+      })}
+    </div>
+  );
 }
 
 export default function Dashboard() {
@@ -135,7 +146,7 @@ export default function Dashboard() {
           </div>
         ) : (
           <div>
-            <h1>Summary (DM only one of these at once, choose a favorite)</h1>
+            <h1>Results</h1>
             {getSummary(matches, accepted)}
             <Link href="/dashboard">Return home</Link>
           </div>

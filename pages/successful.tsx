@@ -19,6 +19,8 @@ export default function Dashboard() {
       </Head>
       <h1>Form submitted.</h1>
       <br />
+      <Link href="/match">Find a match</Link>
+      <br />
       <Link href="/dashboard">Return to dashboard</Link>
     </div>
   );
