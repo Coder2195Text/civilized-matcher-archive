@@ -39,6 +39,7 @@ function getSummary(matches: User[], accepted: boolean[]) {
       <div>
         No matches found. You either couldn't fullfill both your and your
         matches gender and age requirements, or you rejected all your matches.
+        Check back in a day or so.
       </div>
     );
   return (
