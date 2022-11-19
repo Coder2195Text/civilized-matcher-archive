@@ -165,8 +165,9 @@ export default function Form() {
           Valid Answer (are names of towns or cities): NYC, Troy NY, Paris,
           Tokyo, Newark NJ
           <br />
-          Invalid Answer (are country names and refusal to share): USA, Im not
-          sharing my location cuz [some reason], Japan
+          Invalid Answer (are country names, vague locations or refusal to
+          share): USA, Im not sharing my location cuz [some reason], Japan,
+          South Argentina
           <br />
           Invalid forms will be deleted.
         </div>
