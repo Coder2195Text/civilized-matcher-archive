@@ -166,8 +166,9 @@ export default function Form() {
           Tokyo, Newark NJ
           <br />
           Invalid Answer (are country names (small countries are allowed ig),
-          vague locations or refusal to share): USA, Im not sharing my location
-          cuz [some reason], Japan, South Argentina, Europe
+          vague locations, large provinces/states, or refusal to share): USA, Im
+          not sharing my location cuz [some reason], Japan, South Argentina,
+          Europe, California
           <br />
           Invalid forms will be deleted.
         </div>
