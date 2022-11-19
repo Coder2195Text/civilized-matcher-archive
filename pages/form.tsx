@@ -167,7 +167,7 @@ export default function Form() {
           <br />
           Invalid Answer (are country names (small countries are allowed ig),
           vague locations or refusal to share): USA, Im not sharing my location
-          cuz [some reason], Japan, South Argentina
+          cuz [some reason], Japan, South Argentina, Europe
           <br />
           Invalid forms will be deleted.
         </div>
