@@ -162,9 +162,10 @@ export default function Form() {
         <br />
         <label htmlFor="text">Location: </label>
         <div>
-          If a valid answer is not given, your form WILL BE REJECTED, NO
-          EXCEPTIONS. How can u have a match when u cant bother sharing regions?
-          How will ur match find u if its successful?
+          Valid Answer: NYC, Troy NY, Paris, Tokyo, Newark NJ
+          <br />
+          Invalid Answer: USA, Im not sharing my location cuz [some reason],
+          Japan
         </div>
         <input
           value={data!.location}
