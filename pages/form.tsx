@@ -162,7 +162,7 @@ export default function Form() {
         <br />
         <label htmlFor="text">Location: </label>
         <div>
-          Valid Answer (are names of towns of cities): NYC, Troy NY, Paris,
+          Valid Answer (are names of towns or cities): NYC, Troy NY, Paris,
           Tokyo, Newark NJ
           <br />
           Invalid Answer (are country names and refusal to share): USA, Im not
