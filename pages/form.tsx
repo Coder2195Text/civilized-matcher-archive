@@ -162,10 +162,13 @@ export default function Form() {
         <br />
         <label htmlFor="text">Location: </label>
         <div>
-          Valid Answer: NYC, Troy NY, Paris, Tokyo, Newark NJ
+          Valid Answer (are names of towns of cities): NYC, Troy NY, Paris,
+          Tokyo, Newark NJ
           <br />
-          Invalid Answer: USA, Im not sharing my location cuz [some reason],
-          Japan
+          Invalid Answer (are country names and refusal to share): USA, Im not
+          sharing my location cuz [some reason], Japan
+          <br />
+          Invalid forms will be deleted.
         </div>
         <input
           value={data!.location}
