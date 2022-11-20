@@ -35,7 +35,10 @@ export default function Form() {
 
   if (progress == "no") {
     fetch("/api/getUser")
-      .then((res) => res.json())
+      .then((res) => {
+        if (res.status > 400) Router.push("/unsupported");
+        return res.json();
+      })
       .then(async (value: DiscordProfile) => {
         const data = value;
         let response = (await fetch("/api/getResponse").then((res) =>
