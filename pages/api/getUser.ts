@@ -8,9 +8,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         res.status(401).send("Not logged in.")
         return
     }
-    res.status(200).json(await fetch('https://discord.com/api/users/@me', {
+    let status: number = 200;
+    let content: string = await fetch('https://discord.com/api/users/@me', {
         headers: {
             authorization: `Bearer ${accessToken}`,
         },
-    }).then(val => val.json()))
+    }).then(val => {
+        status = val.status;
+        return val.json()
+    })
+    res.status(status).json(content)
 }
