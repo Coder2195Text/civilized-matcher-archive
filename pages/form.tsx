@@ -102,7 +102,7 @@ export default function Form() {
           }
           if (data?.discordTag == "undefined#undefined") {
             setErrors(
-              "Your login might be corrupted. Log out and back in. Reason: Username was undefined#undefined"
+              "Your login might be corrupted. Log out and back in. Reason: Username was undefined#undefined. This could be resolved by opening the website in an broswer rather clicking it inside the discord app."
             );
             return;
           }
