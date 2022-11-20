@@ -17,7 +17,7 @@ export default function Home() {
       </div>
       <h1>If you are getting this error on desktop, try logging out and in.</h1>
       <br />
-      <div>Other solutions may be to use another device.</div>
+      <div>Other solutions may be to use another device or broswer.</div>
     </div>
   );
 }
