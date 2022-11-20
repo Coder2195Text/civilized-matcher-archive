@@ -15,6 +15,9 @@ export default function Home() {
       <div>
         Copy and paste https://civilized-matcher.vercel.app/ into your broswer.
       </div>
+      <h1>If you are getting this error on desktop, try logging out and in.</h1>
+      <br />
+      <div>Other solutions may be to use another device.</div>
     </div>
   );
 }
