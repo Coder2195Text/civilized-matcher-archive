@@ -100,6 +100,12 @@ export default function Form() {
             setErrors("Please give a match description");
             return;
           }
+          if (data?.discordTag == "undefined#undefined") {
+            setErrors(
+              "Your login might be corrupted. Log out and back in. Reason: Username was undefined#undefined"
+            );
+            return;
+          }
           setSubmitting(true);
           fetch("/api/upsert", {
             method: "POST",
