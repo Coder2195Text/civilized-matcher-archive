@@ -8,6 +8,7 @@ export default function Home() {
   const { status } = useSession();
   if (status == "authenticated") {
     Router.push("/dashboard");
+    return <></>;
   }
   return (
     <div className={styles.wrapper}>

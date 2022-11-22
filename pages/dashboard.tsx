@@ -21,6 +21,11 @@ export default function Dashboard() {
       </Head>
       <h1>Dashboard</h1>
       <br />
+      <Link href="/tutorial">
+        WATCH THIS TUTORIAL IF YOU ARE AN NEWCOMER!!!
+      </Link>
+      <br />
+      <br />
       <Link href="/form">Create/Edit Form</Link>
       <br />
       <Link href="/match">Find your match!</Link>

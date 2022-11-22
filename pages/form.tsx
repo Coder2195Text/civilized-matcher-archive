@@ -2,7 +2,7 @@ import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import { signIn, signOut, useSession } from "next-auth/react";
 import Router from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SelectQuestion from "../forms/select";
 import { User } from "@prisma/client";
 import { DiscordProfile } from "next-auth/providers/discord";
@@ -31,6 +31,7 @@ export default function Form() {
 
   if (status == "unauthenticated") {
     Router.push("/");
+    return <></>;
   }
 
   if (progress == "no") {
