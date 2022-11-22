@@ -110,9 +110,11 @@ export default function Form() {
             );
             return;
           }
-          if (!data?.preferredGenders.includes(String(data?.age)) && !confirm("(AI Age Forget Detection): Do you really want to submit? You may have forgetten to put in your age. Press cancel to review your form.")){
-            setErrors(`May have forgetten to put in age, since you are an ${data?.age} year old who prefers people of ages ${data?.preferredAges.replaceAll(";", ", ")}`)
-            return;
+          if (!data?.preferredGenders.includes(String(data?.age))){
+            if (!confirm("(AI Age Forget Detection): Do you really want to submit? You may have forgetten to put in your age. Press cancel to review your form.")){
+              setErrors(`May have forgetten to put in age, since you are an ${data?.age} year old who prefers people of ages ${data?.preferredAges.replaceAll(";", ", ")}`)
+              return;
+            }
           }
           setSubmitting(true);
           fetch("/api/upsert", {
