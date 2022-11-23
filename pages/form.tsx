@@ -9,9 +9,10 @@ import { DiscordProfile } from "next-auth/providers/discord";
 import CheckBoxQuestion from "../forms/checkbox";
 import LongAnswer from "../forms/longanswer";
 
-const AGES = [13, 14, 15, 16, 17, 18].map((val) => String(val));
+const AGES = ["---", 13, 14, 15, 16, 17, 18].map((val) => String(val));
 
 const GENDERS = [
+  "---",
   "Cis Male",
   "Cis Female",
   "Genderfluid",
@@ -47,10 +48,10 @@ export default function Form() {
         )) as User;
         if (!response)
           response = {
-            age: 13,
+            age: NaN,
             desc: "",
             discordTag: "",
-            gender: "Cis Male",
+            gender: "---",
             id: value.id,
             location: "",
             matchDesc: "",
@@ -84,8 +85,16 @@ export default function Form() {
         onSubmit={(e) => {
           e.preventDefault();
           if (submitting) return;
+          if (isNaN(data?.age!)) {
+            setErrors("Select your age.");
+            return;
+          }
           if (data?.preferredAges == "") {
             setErrors("Select at least 1 preferred age.");
+            return;
+          }
+          if (data?.gender == "---") {
+            setErrors("Select your gender.");
             return;
           }
           if (data?.preferredGenders == "") {
@@ -110,9 +119,20 @@ export default function Form() {
             );
             return;
           }
-          if (!data?.preferredAges.includes(String(data?.age))){
-            if (!confirm("(AI Age Forget Detection): Do you really want to submit? You may have forgetten to put in your age. Press cancel to review your form.")){
-              setErrors(`May have forgetten to put in age, since you are an ${data?.age} year old who prefers people of ages ${data?.preferredAges.replaceAll(";", ", ")}`)
+          if (!data?.preferredAges.includes(String(data?.age))) {
+            if (
+              !confirm(
+                "(AI Age Forget Detection): Do you really want to submit? You may have forgetten to put in your age. Press cancel to review your form."
+              )
+            ) {
+              setErrors(
+                `May have forgetten to put in age, since you are an ${
+                  data?.age
+                } year old who prefers people of ages ${data?.preferredAges.replaceAll(
+                  ";",
+                  ", "
+                )}`
+              );
               return;
             }
           }
@@ -137,6 +157,7 @@ export default function Form() {
           options={AGES}
           update={(value: string) => {
             setErrors("");
+            console.log(data);
             //@ts-ignore
             setData({ ...data, age: Number(value) });
           }}
@@ -146,7 +167,7 @@ export default function Form() {
           value={data!.preferredAges}
           question="Ages that you can date: "
           name="preferredAges"
-          options={AGES}
+          options={AGES.slice(1)}
           update={(value: string[]) => {
             //@ts-ignore
             setData({ ...data, preferredAges: value.join(";") });
@@ -169,7 +190,7 @@ export default function Form() {
           value={data!.preferredGenders}
           question="Genders that you can date: "
           name="preferredGenders"
-          options={GENDERS}
+          options={GENDERS.slice(1)}
           update={(value: string[]) => {
             //@ts-ignore
             setData({ ...data, preferredGenders: value.join(";") });

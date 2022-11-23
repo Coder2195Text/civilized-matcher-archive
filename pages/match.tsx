@@ -149,7 +149,9 @@ export default function Dashboard() {
           <div>
             <h1>Results</h1>
             {getSummary(matches, accepted)}
+            <br />
             <Link href="/dashboard">Return home</Link>
+            <br />
           </div>
         )}
       </div>
