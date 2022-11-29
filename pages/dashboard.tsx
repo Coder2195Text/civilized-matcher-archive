@@ -22,7 +22,8 @@ export default function Dashboard() {
       <h1>Dashboard</h1>
       <br />
       <Link href="/tutorial">
-        WATCH THIS TUTORIAL IF YOU WANT AN REFRESHER!!!
+        WATCH THIS TUTORIAL IF YOU ARE AN NEWCOMER OR IF YOU WANT AN
+        REFRESHER!!!
       </Link>
       <br />
       <br />

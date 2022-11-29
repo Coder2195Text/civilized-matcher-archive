@@ -15,11 +15,11 @@ function renderPreview(user: User): Array<JSX.Element | string> {
     <br />,
     `Radius: ${user.radius}`,
     <br />,
-    "Description:",
+    "Description: ",
     <br />,
     user.desc,
     <br />,
-    "User description for Match",
+    "User description for match: ",
     <br />,
     user.matchDesc
   );
@@ -57,7 +57,9 @@ function getSummary(matches: User[], accepted: boolean[]) {
           <div key={u.id}>
             {index})
             <br />
-            Username: {u.discordTag}
+            Username: {u.discordTag} (If username doesn't work, try sending
+            "&#60;&#64;{u.id}&#62;" in chat to find the new username, and if
+            that person left the server, just find someone else)
             <br />
             Age: {u.age}
             <br />
