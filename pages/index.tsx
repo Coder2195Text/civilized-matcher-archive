@@ -26,15 +26,14 @@ export default function Home() {
         Well, if you are already a member of my discord server, that great
         matchmaking is HERE.
         <br />
-        If not this won't do you much good, cuz only my discord server members
-        can make use of this.
-        <br />
+        Our matchmaking is secure, because you cannot fake someone else's
+        application due to our Discord OAuth. Try it out now!!!
         <button
           onClick={() => {
             signIn("discord");
           }}
         >
-          Get Started
+          Login with Discord
         </button>
       </div>
     </div>
