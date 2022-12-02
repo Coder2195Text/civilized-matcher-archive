@@ -98,7 +98,7 @@ export default function Form() {
             return;
           }
           if (data?.preferredGenders == "") {
-            setErrors("Selected at least 1 preferred gender.");
+            setErrors("Select at least 1 preferred gender.");
             return;
           }
           if (data?.location == "") {
@@ -199,6 +199,9 @@ export default function Form() {
         <br />
         <label htmlFor="text">Location: </label>
         <div>
+          You may share towns/cities that are 50km away from your irl location
+          if you aren't comfy with your real location.
+          <br />
           Valid Answer (are names of towns or cities): NYC, Troy NY, Paris,
           Tokyo, Newark NJ
           <br />
