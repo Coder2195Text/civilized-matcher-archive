@@ -201,16 +201,13 @@ export default function Form() {
         <div>
           You may share towns/cities that are 50km away from your irl location
           if you aren't comfy with your real location.
-          <br />
-          Valid Answer (are names of towns or cities): NYC, Troy NY, Paris,
-          Tokyo, Newark NJ
-          <br />
-          Invalid Answer (are country names (small countries are allowed ig),
-          vague locations, large provinces/states, or refusal to share): USA, Im
-          not sharing my location cuz [some reason], Japan, South Argentina,
-          Europe, California
-          <br />
-          Invalid forms will be deleted.
+          <b>
+            DO! NOT! GIVE! ME! ANY CONTINENT, COUNTRY, STATE, OR PROVINCE
+            NAMES!!! CITY OR TOWN NAMES ONLY.
+            <br />
+            Your form will be deleted so looks like you will have no bf/gf if
+            you dont get your geography right.
+          </b>
         </div>
         <input
           value={data!.location}
