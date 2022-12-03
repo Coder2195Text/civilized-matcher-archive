@@ -201,6 +201,7 @@ export default function Form() {
         <div>
           You may share towns/cities that are 50km away from your irl location
           if you aren't comfy with your real location.
+          <br />
           <b>
             DO! NOT! GIVE! ME! ANY CONTINENT, COUNTRY, STATE, OR PROVINCE
             NAMES!!! CITY OR TOWN NAMES ONLY.
