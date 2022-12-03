@@ -203,8 +203,8 @@ export default function Form() {
           if you aren't comfy with your real location.
           <br />
           <b>
-            DO! NOT! GIVE! ME! ANY CONTINENT, COUNTRY, STATE, OR PROVINCE
-            NAMES!!! CITY OR TOWN NAMES ONLY.
+            DO NOT GIVE ME ANY CONTINENT, COUNTRY, STATE, OR PROVINCE NAMES!!!
+            CITY OR TOWN NAMES ONLY.
             <br />
             Your form will be deleted so looks like you will have no bf/gf if
             you dont get your geography right.
