@@ -5,6 +5,7 @@ import { signIn, signOut, useSession } from "next-auth/react";
 import Router from "next/router";
 import Link from "next/link";
 import { useState } from "react";
+import Image from "next/image";
 
 export default function Dashboard() {
   const { status, data } = useSession();
@@ -20,17 +21,40 @@ export default function Dashboard() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <h1>Dashboard</h1>
-      <br />
-      <Link href="/tutorial">
-        WATCH THIS TUTORIAL IF YOU ARE AN NEWCOMER OR IF YOU WANT AN
-        REFRESHER!!!
-      </Link>
-      <br />
-      <br />
-      <Link href="/form">Create/Edit Form</Link>
-      <br />
-      <Link href="/match">Find your match!</Link>
+      <div className="row">
+        <hr className="d-block d-md-none" />
+        <div className="col-12 col-md-6">
+          <h4>Tutorial</h4>
+          <Link href="/tutorial">
+            Tutorial for newcomers or for refresher purposes
+          </Link>
+          <br />
+          We wont answer any questions you have unless you matched the tutorial.
+          <br />
+          <b>Note: </b>Tutorial was made in old versions of the site, but the
+          concepts are still the same
+        </div>
+        <hr className="d-block d-md-none" />
+        <div className="col-12 col-md-6">
+          <h4>Matchmaking Actions</h4>
+          <Link href="/form">Create/Edit Form</Link>
+          <br />
+          <Link href="/match">Matchmake yourself (Find your match)</Link>
+        </div>
+      </div>
+      <hr />
+      <h4>
+        Logged in as {data?.user?.name}{" "}
+        <Image
+          src={data?.user?.image || ""}
+          alt=""
+          width={50}
+          height={50}
+          className="rounded-circle"
+        />
+      </h4>
       <div className={styles.buttonWrapper}>
+        <br />
         <button
           style={{
             width: "200px",

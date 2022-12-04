@@ -281,7 +281,20 @@ export default function Form() {
           }}
         />
         <div>{errors == "" ? "" : `Form error: ${errors}`}</div>
-        <button type="submit">{submitting ? "Submitting" : "Submit"}</button>
+        <div className="w-100 d-flex justify-content-evenly">
+          <button
+            type="button"
+            onClick={() => {
+              Router.push("/dashboard");
+            }}
+            className="btn btn-danger mx-auto"
+          >
+            Discard Changes
+          </button>
+          <button type="submit" className="btn btn-primary mx-auto">
+            {submitting ? "Submitting" : "Submit"}
+          </button>
+        </div>
       </form>
     </div>
   );

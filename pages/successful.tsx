@@ -18,10 +18,18 @@ export default function Dashboard() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <h1>Form submitted.</h1>
-      <br />
+      <hr />
       <Link href="/match">Find a match</Link>
       <br />
+      You'll want to click this, because you go straight to matchmaking youself,
+      since this is an self matchmaking thingy.
+      <br />
+      <hr />
       <Link href="/dashboard">Return to dashboard</Link>
+      <br />
+      Remember, no one matchmakes for you, except for yourself. Only click the
+      button if you are busy or something.
+      <hr />
     </div>
   );
 }

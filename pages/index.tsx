@@ -1,6 +1,5 @@
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
-import { DiscordLoginButton } from "react-social-login-buttons";
 import { signIn, useSession } from "next-auth/react";
 import Router from "next/router";
 
