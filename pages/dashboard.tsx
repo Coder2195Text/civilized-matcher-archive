@@ -21,7 +21,7 @@ export default function Dashboard() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <h1>Dashboard</h1>
-      <div className="row">
+      <div className="row w-100">
         <hr className="d-block d-md-none" />
         <div className="col-12 col-md-6">
           <h4>Tutorial</h4>
