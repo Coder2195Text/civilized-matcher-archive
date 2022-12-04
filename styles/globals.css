@@ -1,17 +1,8 @@
 html,
 body {
   font-size: 15pt;
-  background-color: pink;
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-}
-
-h1 {
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-  margin-bottom: 0;
-  font-size: 30pt;
 }
 
 a {
@@ -27,25 +18,10 @@ button,
 input,
 select,
 textarea {
-  font-family: Verdana, Geneva, 'Courier New', Courier, monospace;
   font-size: 20pt;
 }
 
 label {
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  padding-left: 10px;
   font-size: 20pt;
-}
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-
-  body {
-    color: white;
-    background: black;
-  }
-}
-div {
-  white-space: pre-wrap;
 }
