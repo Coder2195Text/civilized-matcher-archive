@@ -1,6 +1,5 @@
-import { PrismaClient, User } from "@prisma/client";
+import { PrismaClient } from "@prisma/client";
 import { NextApiRequest, NextApiResponse } from "next";
-import { getSession } from "next-auth/react";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     const prisma = new PrismaClient()
@@ -12,6 +11,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         select: {
             id: true
         }
-    })).map(u=>u.id);
+    })).map(u => u.id);
     res.status(200).json(data)
 }

@@ -7,10 +7,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const session = await getSession({ req })
     let admin = false;
     let adminID;
-    if (req.query.password == process.env.ADMIN_PASS){
+    if (req.query.password == process.env.ADMIN_PASS) {
         admin = true
         adminID = req.query.id as string | undefined
-        if (!adminID){
+        if (!adminID) {
             res.status(403).send("id?")
             return
         }
@@ -19,6 +19,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         res.status(401).send("Not logged in.")
         return
     }
+    //@ts-ignore
     let id = adminID ? adminID : session?.user.id
     const data = await prisma.user.delete({
         where: {

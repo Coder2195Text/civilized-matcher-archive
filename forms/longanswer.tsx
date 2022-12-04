@@ -16,6 +16,7 @@ export default function LongAnswer({
       <label htmlFor={name}>{question}</label>
       <br />
       <textarea
+        className="form-control d-inline"
         maxLength={maxLength}
         name={name}
         value={value}

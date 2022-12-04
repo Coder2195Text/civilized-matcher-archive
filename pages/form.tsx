@@ -1,8 +1,8 @@
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
-import { signIn, signOut, useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import Router from "next/router";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import SelectQuestion from "../forms/select";
 import { User } from "@prisma/client";
 import { DiscordProfile } from "next-auth/providers/discord";
@@ -211,6 +211,7 @@ export default function Form() {
           </b>
         </div>
         <input
+          className="form-control d-inline w-auto"
           value={data!.location}
           type="text"
           name="location"
@@ -239,6 +240,7 @@ export default function Form() {
         <label htmlFor="text">Distance radius (km): </label>
         <div>Put 0 if u don't care about distance.</div>
         <input
+          className="form-control d-inline w-auto"
           value={String(data!.radius)}
           type="number"
           min={0}

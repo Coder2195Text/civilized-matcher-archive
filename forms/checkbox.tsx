@@ -32,6 +32,7 @@ export default function CheckBoxQuestion({
       {options.map((option) => (
         <span key={option}>
           <input
+            className="form-check-input"
             type="checkbox"
             value={option}
             id={name + option}

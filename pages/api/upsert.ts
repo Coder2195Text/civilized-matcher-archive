@@ -18,6 +18,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         res.status(401).send("Not logged in.")
         return
     }
+    //@ts-ignore
     if (session?.user.id !== body.id && !admin) {
         res.status(401).send("Bad auth")
         return

@@ -15,6 +15,7 @@ export default function SelectQuestion({
     <div>
       <label htmlFor={name}>{question}</label>
       <select
+        className="form-select w-auto d-inline"
         value={value}
         name={name}
         id={name}
