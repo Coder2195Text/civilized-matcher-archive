@@ -1,6 +1,7 @@
 import Head from "next/head";
 import { signIn, useSession } from "next-auth/react";
 import Router from "next/router";
+import Button from "react-bootstrap/Button";
 
 export default function Home() {
   const { status } = useSession();
@@ -27,14 +28,14 @@ export default function Home() {
         Our matchmaking is secure, because you cannot fake someone else's
         application due to our Discord OAuth. Try it out now!!!
         <br />
-        <button
+        <Button
           onClick={() => {
             signIn("discord");
           }}
-          className="btn btn-primary"
+          variant="primary"
         >
           Login with Discord
-        </button>
+        </Button>
       </div>
     </div>
   );

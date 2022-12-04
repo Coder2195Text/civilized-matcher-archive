@@ -4,6 +4,7 @@ import Router from "next/router";
 import Link from "next/link";
 import { useState } from "react";
 import Image from "next/image";
+import Button from "react-bootstrap/Button";
 
 export default function Dashboard() {
   const { status, data } = useSession();
@@ -55,17 +56,17 @@ export default function Dashboard() {
           className="rounded-circle"
         />
       </h4>
-      <div className="w-100 text-center d-flex justify-content-around">
-        <button
-          className="btn btn-primary"
+      <div className="w-100 text-center d-flex justify-content-around pb-3">
+        <Button
+          variant="primary"
           onClick={() => {
             signOut();
           }}
         >
           Logout
-        </button>
-        <button
-          className="btn btn-danger"
+        </Button>
+        <Button
+          variant="danger"
           onClick={async () => {
             if (deleting) return;
             setDeleting(true);
@@ -88,7 +89,7 @@ export default function Dashboard() {
           }}
         >
           {deleting ? "Deleting..." : "Delete Form"}
-        </button>
+        </Button>
       </div>
     </div>
   );

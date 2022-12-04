@@ -7,6 +7,7 @@ import { User } from "@prisma/client";
 import { DiscordProfile } from "next-auth/providers/discord";
 import CheckBoxQuestion from "../forms/checkbox";
 import LongAnswer from "../forms/longanswer";
+import Button from "react-bootstrap/Button";
 
 const AGES = ["---", 13, 14, 15, 16, 17, 18].map((val) => String(val));
 
@@ -282,19 +283,19 @@ export default function Form() {
           }}
         />
         <div>{errors == "" ? "" : `Form error: ${errors}`}</div>
-        <div className="w-100 d-flex justify-content-evenly">
-          <button
+        <div className="w-100 d-flex justify-content-evenly pb-3">
+          <Button
             type="button"
             onClick={() => {
               Router.push("/dashboard");
             }}
-            className="btn btn-danger mx-auto"
+            variant="danger"
           >
             Discard Changes
-          </button>
-          <button type="submit" className="btn btn-primary mx-auto">
+          </Button>
+          <Button type="submit" variant="primary">
             {submitting ? "Submitting" : "Submit"}
-          </button>
+          </Button>
         </div>
       </form>
     </div>

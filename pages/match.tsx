@@ -4,6 +4,7 @@ import Router from "next/router";
 import Link from "next/link";
 import { useState } from "react";
 import { User } from "@prisma/client";
+import Button from "react-bootstrap/Button";
 
 function renderPreview(user: User): Array<JSX.Element | string> {
   let array = [];
@@ -128,9 +129,9 @@ export default function Dashboard() {
             <br />
             <div>{renderPreview(matches![currentIndex])}</div>
             <br />
-            <div className="w-100 text-center d-flex justify-content-around">
-              <button
-                className="btn btn-primary"
+            <div className="w-100 text-center d-flex justify-content-around pb-3">
+              <Button
+                variant="primary"
                 onClick={() => {
                   let acceptArr = [...accepted];
                   acceptArr[currentIndex] = true;
@@ -139,15 +140,15 @@ export default function Dashboard() {
                 }}
               >
                 Accept
-              </button>
-              <button
-                className="btn btn-danger"
+              </Button>
+              <Button
+                variant="danger"
                 onClick={() => {
                   setCurrentIndex(currentIndex + 1);
                 }}
               >
                 Reject
-              </button>
+              </Button>
             </div>
           </div>
         ) : (
