@@ -28,6 +28,7 @@ export default function Home() {
         <br />
         Our matchmaking is secure, because you cannot fake someone else's
         application due to our Discord OAuth. Try it out now!!!
+        <br />
         <button
           onClick={() => {
             signIn("discord");
