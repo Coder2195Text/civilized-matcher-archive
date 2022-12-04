@@ -199,15 +199,19 @@ export default function Form() {
         <br />
         <label htmlFor="text">Location: </label>
         <div>
-          You may share towns/cities that are 50km away from your irl location
-          if you aren't comfy with your real location.
+          Send your town/city or one that is 50km away from your irl location if
+          you aren't comfy with your real location.
+          <br />
+          50km takes a person 10 hours to walk (as a reference)
           <br />
           <b>
-            DO NOT GIVE ME ANY CONTINENT, COUNTRY, STATE, OR PROVINCE NAMES!!!
-            CITY OR TOWN NAMES ONLY.
+            DO NOT GIVE ME ANY CONTINENT, COUNTRY, STATE, OR PROVINCE NAMES BY
+            THEMSELVES!!!
             <br />
-            Your form will be deleted so looks like you will have no bf/gf if
-            you dont get your geography right.
+            Basically, just search up your city in google, and if the first
+            result is your city, you paste what is in your search bar into here.
+            <br />
+            Get this part right, or no bf/gf for you.
           </b>
         </div>
         <input

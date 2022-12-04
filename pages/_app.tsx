@@ -2,7 +2,7 @@ import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import { SessionProvider } from "next-auth/react";
 import { Session } from "next-auth";
-import "bootswatch/dist/minty/bootstrap.min.css";
+import "bootswatch/dist/vapor/bootstrap.min.css";
 import SSRProvider from "react-bootstrap/SSRProvider";
 
 export default function App({
@@ -13,7 +13,15 @@ export default function App({
   return (
     <SSRProvider>
       <SessionProvider session={session}>
-        <Component {...pageProps} />
+        <div
+          style={{
+            height: "100vh",
+            overflowY: "scroll",
+            overflowX: "hidden",
+          }}
+        >
+          <Component {...pageProps} />
+        </div>
       </SessionProvider>
     </SSRProvider>
   );
