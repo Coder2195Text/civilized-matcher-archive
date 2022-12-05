@@ -13,12 +13,7 @@ export default function App({
   return (
     <SSRProvider>
       <SessionProvider session={session}>
-        <div
-          className="w-100 text-center vh-100 overflow-auto"
-          style={{
-            fontFamily: "Lato",
-          }}
-        >
+        <div className="w-100 text-center vh-100 overflow-auto">
           <Component {...pageProps} />
         </div>
       </SessionProvider>
