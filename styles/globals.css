@@ -1,8 +1,10 @@
+@import url('http://fonts.googleapis.com/css?family=Lato:400,700');
 html,
 body {
   font-size: 15pt;
   padding: 0;
   margin: 0;
+  overflow: hidden;
 }
 
 a {

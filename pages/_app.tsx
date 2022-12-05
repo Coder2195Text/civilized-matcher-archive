@@ -14,10 +14,9 @@ export default function App({
     <SSRProvider>
       <SessionProvider session={session}>
         <div
+          className="w-100 text-center vh-100 overflow-auto"
           style={{
-            height: "100vh",
-            overflowY: "scroll",
-            overflowX: "hidden",
+            fontFamily: "Lato",
           }}
         >
           <Component {...pageProps} />
