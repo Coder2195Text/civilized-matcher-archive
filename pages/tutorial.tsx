@@ -12,6 +12,10 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <h1>Tutorial (Scroll down when finished)</h1>
+      <h4>
+        The website has long since been updated, just watch the video for the
+        concepts... The concepts are still the same.
+      </h4>
       <iframe
         src="https://streamable.com/e/ub0d63?autoplay=1&loop=0"
         allowFullScreen
