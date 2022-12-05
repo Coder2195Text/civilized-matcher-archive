@@ -28,7 +28,9 @@ export default function Home() {
         }}
       ></iframe>
       <br />
-      <Link href="/dashboard">Return Home</Link>
+      <Link href="/dashboard" className="link-primary">
+        Return Home
+      </Link>
       <br />
       <br />
     </>
