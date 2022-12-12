@@ -20,6 +20,9 @@ const GENDERS = [
   "Trans Male",
   "Trans Female",
   "Bigender",
+  "Demi girl",
+  "Demi boy",
+  "Agender",
 ];
 
 export default function Form() {
