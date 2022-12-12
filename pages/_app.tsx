@@ -14,7 +14,9 @@ export default function App({
     <SSRProvider>
       <SessionProvider session={session}>
         <div className="w-100 text-center vh-100 overflow-auto">
-          <Component {...pageProps} />
+          <div className="pb-5">
+            <Component {...pageProps} />
+          </div>
         </div>
       </SessionProvider>
     </SSRProvider>
