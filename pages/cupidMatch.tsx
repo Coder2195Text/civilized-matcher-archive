@@ -237,12 +237,13 @@ export default function Dashboard() {
         <Button
           variant="primary"
           onClick={async (e) => {
+            let elm = e.currentTarget;
             if (userIDs) {
               userIDRef.current!.value =
                 userIDs[Math.floor(Math.random() * userIDs.length)];
               return;
             }
-            e.currentTarget.disabled = true;
+            elm.disabled = true;
             setErrors("Fetching list of users...");
             let res = await fetch(`/api/getIds?password=${password}`).then(
               (res) => res
@@ -253,11 +254,11 @@ export default function Dashboard() {
               );
             }
             let list: string[] = await res.json();
+            elm.disabled = false;
             setUserIDs(list);
             userIDRef.current!.value =
               list[Math.floor(Math.random() * list.length)];
             setErrors("");
-            e.currentTarget.disabled = false;
           }}
         >
           Choose random person
