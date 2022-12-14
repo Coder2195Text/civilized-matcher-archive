@@ -98,11 +98,11 @@ function getSummary(
                 setResultState(1);
                 await fetch(`/api/postMessage?password=${password}`, {
                   headers: {
-                    'Content-Type': 'text/plain'
+                    "Content-Type": "text/plain",
                   },
                   method: "POST",
                   body: `<@${userID}> and <@${u.id}>, you are lazy people who didn\'t bother finding your own matches.\nNow I have matched you (UGH ANNOYING HUMANS), if your match fails, go matchmake yourself next time in the link inside <#1041081886031753233>.`,
-                })
+                });
                 setResultState(2);
               }}
             >
@@ -236,12 +236,13 @@ export default function Dashboard() {
         <br />
         <Button
           variant="primary"
-          onClick={async () => {
+          onClick={async (e) => {
             if (userIDs) {
               userIDRef.current!.value =
                 userIDs[Math.floor(Math.random() * userIDs.length)];
               return;
             }
+            e.currentTarget.disabled = true;
             setErrors("Fetching list of users...");
             let res = await fetch(`/api/getIds?password=${password}`).then(
               (res) => res
@@ -256,6 +257,7 @@ export default function Dashboard() {
             userIDRef.current!.value =
               list[Math.floor(Math.random() * list.length)];
             setErrors("");
+            e.currentTarget.disabled = false;
           }}
         >
           Choose random person
