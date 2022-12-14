@@ -2,7 +2,7 @@ import Head from "next/head";
 import { useSession } from "next-auth/react";
 import Router from "next/router";
 import Link from "next/link";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { User } from "@prisma/client";
 import Button from "react-bootstrap/Button";
 
@@ -135,7 +135,7 @@ function getSummary(
 export default function Dashboard() {
   const [response, setResponse] = useState<User>();
   const [user, setUser] = useState<string>();
-  const [password, setPassword] = useState<string>();
+  const [password, setPassword] = useState<string>("");
   const [errors, setErrors] = useState<string | undefined>(undefined);
   const { status, data } = useSession();
   const [matches, setMatches] = useState<User[] | null>(null);
@@ -143,9 +143,9 @@ export default function Dashboard() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [fetching, setFetching] = useState(false);
   const [resultState, setResultState] = useState(0); //0 for not matched, 1 for pending, 2 for done
-  if (status == "unauthenticated") {
-    Router.push("/");
-  }
+  const userIDRef = useRef<HTMLInputElement>(null);
+  const [userIDs, setUserIDs] = useState<string[]>();
+
   if (resultState == 2) {
     return (
       <>
@@ -199,7 +199,8 @@ export default function Dashboard() {
           type="text"
           name="location"
           maxLength={22}
-          onChange={() => {
+          ref={userIDRef}
+          onChange={(e) => {
             setErrors(undefined);
           }}
           onBlur={async (e) => {
@@ -229,6 +230,42 @@ export default function Dashboard() {
             setUser(e.target.value);
           }}
         />
+        <br />
+        <Button
+          variant="primary"
+          onClick={async () => {
+            if (userIDs) {
+              userIDRef.current!.value =
+                userIDs[Math.floor(Math.random() * userIDs.length)];
+              return;
+            }
+            setErrors("Fetching list of users...");
+            let res = await fetch(`/api/getIds?password=${password}`).then(
+              (res) => res
+            );
+            if (res.status == 401) {
+              setErrors(
+                "Error: Please put a password or get the password correct."
+              );
+            }
+            let list: string[] = await res.json();
+            setUserIDs(list);
+            userIDRef.current!.value =
+              list[Math.floor(Math.random() * list.length)];
+            setErrors("");
+          }}
+        >
+          Choose random person
+        </Button>
+        <Button
+          variant="primary"
+          onClick={() => {
+            userIDRef.current?.focus();
+            userIDRef.current?.blur();
+          }}
+        >
+          Start the matchmaking
+        </Button>
         {errors ? <div>{errors}</div> : ""}
         <br />
       </>
