@@ -19,7 +19,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
     await fetch(process.env.DISCORD_WEBHOOK_URL as string, {
         method: "POST",
-        body: JSON.stringfy({content:req.body})
+        body: JSON.stringify({content:req.body})
     })
     res.status(200).send("Successful")
 }
