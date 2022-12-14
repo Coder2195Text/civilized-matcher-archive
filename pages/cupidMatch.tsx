@@ -173,6 +173,7 @@ export default function Dashboard() {
         Want to help with cupid? DM me to get cupid role in order to get the
         password. The password is in the Server Category, in a channel called
         "cupid-stuff"
+        <br />
         <label htmlFor="text">Password: </label>
         <input
           className="form-control d-inline w-auto"
