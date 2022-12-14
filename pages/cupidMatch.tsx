@@ -98,11 +98,10 @@ function getSummary(
                 setResultState(1);
                 alert(await fetch(`/api/postMessage?password=${password}`, {
                   headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'text/plain'
                   },
                   method: "POST",
-                  body: `"<@${userID}> and <@${u.id}>, you are lazy people who didn't bother finding your own matches.\nNow I have matched you (UGH ANNOYING HUMANS), if your match fails, go matchmake yourself next time in the link inside <#1041081886031753233>."`,
+                  body: `<@${userID}> and <@${u.id}>, you are lazy people who didn\'t bother finding your own matches.\nNow I have matched you (UGH ANNOYING HUMANS), if your match fails, go matchmake yourself next time in the link inside <#1041081886031753233>.`,
                 }).then(res=>alert(res.status)))
 
 
