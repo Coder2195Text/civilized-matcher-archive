@@ -96,15 +96,13 @@ function getSummary(
               disabled={resultState == 1}
               onClick={async () => {
                 setResultState(1);
-                alert(await fetch(`/api/postMessage?password=${password}`, {
+                await fetch(`/api/postMessage?password=${password}`, {
                   headers: {
                     'Content-Type': 'text/plain'
                   },
                   method: "POST",
                   body: `<@${userID}> and <@${u.id}>, you are lazy people who didn\'t bother finding your own matches.\nNow I have matched you (UGH ANNOYING HUMANS), if your match fails, go matchmake yourself next time in the link inside <#1041081886031753233>.`,
-                }).then(res=>alert(res.status)))
-
-
+                })
                 setResultState(2);
               }}
             >
