@@ -17,7 +17,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         res.status(401).send("bad auth")
         return
     }
-    const hook = new Webhook(process.env.DISCORD_WEBHOOK_URL as string)
-    hook.send(req.body)
+    await fetch(process.env.DISCORD_WEBHOOK_URL as string, {
+        method: "POST",
+        body: JSON.stringfy({content:req.body})
+    })
     res.status(200).send("Successful")
 }
