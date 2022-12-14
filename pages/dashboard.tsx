@@ -46,6 +46,18 @@ export default function Dashboard() {
         </span>
       </div>
       <hr />
+      <div className="row g-0 w-100">
+        <h4>Are you a cupid guiding lazy people to their matches?</h4>
+        <br />
+        <div>
+          If so, go{" "}
+          <Link href="/cupidMatch" className="link-primary">
+            HERE!
+          </Link>
+          <br />
+        </div>
+      </div>
+      <hr />
       <h4>
         Logged in as {data?.user?.name}{" "}
         <Image

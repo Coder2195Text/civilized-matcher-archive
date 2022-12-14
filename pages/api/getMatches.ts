@@ -5,15 +5,29 @@ import { getSession } from "next-auth/react";
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     const prisma = new PrismaClient()
     const session = await getSession({ req });
-
+    let admin = false;
+    let adminID;
+    if (req.query.password) {
+        if (req.query.password == process.env.ADMIN_PASS || req.query.password == process.env.CUPID_PASSWORD) {
+            admin = true
+            adminID = req.query.id as string | undefined
+            if (!adminID) {
+                res.status(403).send("id?")
+                return
+            }
+        } else {
+            res.status(401).send("invalid password")
+        }
+    }
     if (!session) {
         res.status(401).send("Not logged in.")
         return
     }
+    //@ts-ignore
+    let id = adminID ? adminID : session?.user?.id;
     const response = await prisma.user.findUnique({
         where: {
-            //@ts-ignore
-            id: session?.user?.id
+            id: id
         }
     })
     if (!response) {
@@ -23,8 +37,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const data = await prisma.user.findMany({
         where: {
             id: {
-                //@ts-ignore
-                notIn: [session.user.id]
+                notIn: [id]
             },
             gender: {
                 in: response.preferredGenders.split(";")
