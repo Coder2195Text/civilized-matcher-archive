@@ -17,7 +17,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         res.status(401).send("bad auth")
         return
     }
-    let stat:number;
+    let stat:number=404;
     let resp = await fetch(process.env.DISCORD_WEBHOOK_URL as string, {
         headers: {
             'Accept': 'application/json',
