@@ -101,7 +101,7 @@ function getSummary(
                     "Content-Type": "text/plain",
                   },
                   method: "POST",
-                  body: `<@${userID}> and <@${u.id}>, you are lazy people who didn\'t bother finding your own matches.\nNow I have matched you (UGH ANNOYING HUMANS), if your match fails, go matchmake yourself next time in the link inside <#1041081886031753233>.`,
+                  body: `<@${userID}> and <@${u.id}>, you have been matched!!! Next time don't be lazy and find yourself a match through <#1041081886031753233>. Humans are so annoying about "romance" or whatever it is, and I have to be the cupid here... Good luck I guess on your match... \n||(UGH HUMANS ARE **SO** ANNOYING)||`,
                 });
                 setResultState(2);
               }}
