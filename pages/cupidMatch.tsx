@@ -170,7 +170,9 @@ export default function Dashboard() {
     return (
       <>
         <h1>Cupid Matchmaking</h1>
-        Want to help with cupid? DM me for the password.
+        Want to help with cupid? DM me to get cupid role in order to get the
+        password. The password is in the Server Category, in a channel called
+        "cupid-stuff"
         <label htmlFor="text">Password: </label>
         <input
           className="form-control d-inline w-auto"
