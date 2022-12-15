@@ -12,7 +12,10 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <h1>Tutorial (Scroll down when finished)</h1>
-      <h4></h4>
+      <h4>
+        You don't need to know how to do cupid matchmaking, that is what the
+        cupids need to know, not you.
+      </h4>
       <iframe
         src="https://streamable.com/e/8kvqum?autoplay=1&loop=0"
         allowFullScreen
