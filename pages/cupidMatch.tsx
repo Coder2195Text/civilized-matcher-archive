@@ -157,7 +157,8 @@ export default function Dashboard() {
           href="/cupidMatch"
           className="link-primary"
           onClick={() => {
-            Router.reload();
+            setResultState(0);
+            setUser(undefined);
           }}
         >
           Matchmake another!!!
