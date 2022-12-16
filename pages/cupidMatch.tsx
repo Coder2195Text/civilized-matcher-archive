@@ -209,6 +209,8 @@ export default function Dashboard() {
           }}
           onBlur={async (e) => {
             e.target.value = e.target.value.trim();
+            if (e.target.value == "") return;
+
             setErrors("Fetching...");
             let res = await fetch(
               `/api/getResponse?password=${password}&id=${e.target.value}`
