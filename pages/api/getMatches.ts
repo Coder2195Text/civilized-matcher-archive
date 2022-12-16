@@ -19,7 +19,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             res.status(401).send("invalid password")
         }
     }
-    if (!session) {
+    if (!session && !admin) {
         res.status(401).send("Not logged in.")
         return
     }
