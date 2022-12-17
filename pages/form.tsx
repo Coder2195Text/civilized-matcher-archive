@@ -211,9 +211,7 @@ export default function Form() {
             DO NOT GIVE ME ANY CONTINENT, COUNTRY, STATE, OR PROVINCE NAMES BY
             THEMSELVES!!!
             <br />
-            Basically, just search up your city/town (or the one within 50km) in
-            google, and if the first result is that city/town, you paste what is
-            in your search bar into here.
+            Include the province and country name along with the city/town if the city/town isn't a well known one.
             <br />
             Get this part right, or no bf/gf for you.
           </b>
