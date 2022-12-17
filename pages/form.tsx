@@ -211,7 +211,11 @@ export default function Form() {
             DO NOT GIVE ME ANY CONTINENT, COUNTRY, STATE, OR PROVINCE NAMES BY
             THEMSELVES!!!
             <br />
-            Include the province and country name along with the city/town if the city/town isn't a well known one.
+            <u>
+              Include the province and country name along with the city/town if
+              the city/town isn't a well known one, or if there are other towns
+              with the same name.
+            </u>
             <br />
             Get this part right, or no bf/gf for you.
           </b>
