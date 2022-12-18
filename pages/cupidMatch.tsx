@@ -95,13 +95,21 @@ function getSummary(
               variant="primary"
               disabled={resultState == 1}
               onClick={async () => {
-                setResultState(1);
+                let reason = null;
+                if (prompt) {
+                  reason = prompt(
+                    "Provide a short and consise reason of why you choose them."
+                  )?.trim();
+                }
+                if (reason == "" || !reason) {
+                  reason = "No reason given...";
+                }
                 await fetch(`/api/postMessage?password=${password}`, {
                   headers: {
                     "Content-Type": "text/plain",
                   },
                   method: "POST",
-                  body: `<@${userID}> and <@${u.id}>, you have been matched!!! Next time don't be lazy and find yourself a match through <#1041081886031753233>. Humans are so annoying about "romance" or whatever it is, and I have to be the cupid here... Good luck I guess on your match... \n||(UGH HUMANS ARE **SO** ANNOYING)||`,
+                  body: `<@${userID}> and <@${u.id}>, you have been matched!!!\n**Reason:**\n> ${reason}\nNext time don't be lazy and find yourself a match through <#1041081886031753233>. Humans are so annoying about "romance" or whatever it is, and I have to be the cupid here... Good luck I guess on your match... \n||(UGH HUMANS ARE **SO** ANNOYING)||`,
                 });
                 setResultState(2);
               }}
@@ -140,7 +148,6 @@ export default function Dashboard() {
   const [user, setUser] = useState<string>();
   const [password, setPassword] = useState<string>("");
   const [errors, setErrors] = useState<string | undefined>(undefined);
-  const { status, data } = useSession();
   const [matches, setMatches] = useState<User[] | null>(null);
   const [accepted, setAccepted] = useState<boolean[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -159,6 +166,11 @@ export default function Dashboard() {
           onClick={() => {
             setResultState(0);
             setUser(undefined);
+            setMatches(null);
+            setAccepted([]);
+            setCurrentIndex(0);
+            setFetching(false);
+            setUserIDs(undefined);
           }}
         >
           Matchmake another!!!
