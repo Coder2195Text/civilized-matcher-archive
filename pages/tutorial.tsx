@@ -17,7 +17,7 @@ export default function Home() {
         cupids need to know, not you.
       </h4>
       <iframe
-        src="https://streamable.com/e/8kvqum?autoplay=1&loop=0"
+        src="https://streamable.com/e/0bcpwn?autoplay=1&loop=0"
         allowFullScreen
         allow="autoplay"
         style={{
