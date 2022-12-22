@@ -25,7 +25,7 @@ const GENDERS = [
   "Agender",
 ];
 
-const SEXES = ["---", "Man", "Woman"];
+const SEXES = ["---", "Guy", "Gal"];
 
 export default function Form() {
   const [submitting, setSubmitting] = useState(false);
