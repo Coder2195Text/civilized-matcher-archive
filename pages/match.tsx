@@ -65,6 +65,16 @@ function getSummary(matches: User[], accepted: boolean[]) {
             <br />
             Preferred Ages: {u.preferredAges.split(";").join(", ")}
             <br />
+            {u.formVersion == 0 ? (
+              "(Old form, doesn't have sex requirements.)"
+            ) : (
+              <>
+                Sex: {u.sex}
+                <br />
+                Preferred Sexes: {u.preferredSex.split(";").join(", ")}
+              </>
+            )}
+            <br />
             Gender: {u.gender}
             <br />
             Preferred Gender: {u.preferredGenders.split(";").join(", ")}
@@ -99,18 +109,18 @@ export default function Dashboard() {
   }
   if (!fetching && !matches) {
     setFetching(true);
-    fetch("/api/getMatches")
+    fetch("/api/getResponse")
       .then((res) => res.json())
-      .then(async (val: User[] | null) => {
-        if (val == null) {
+      .then(async (val: User | null) => {
+        if (val == null || val.formVersion == 0) {
           Router.push("/form");
         } else {
-          const res = (await fetch("/api/getResponse").then((res) =>
+          const res = (await fetch("/api/getMatches").then((res) =>
             res.json()
-          )) as User;
-          setResponse(res);
-          setMatches(val);
-          setAccepted(val.map(() => false));
+          )) as User[];
+          setResponse(val);
+          setMatches(res);
+          setAccepted(res.map(() => false));
         }
       });
   }

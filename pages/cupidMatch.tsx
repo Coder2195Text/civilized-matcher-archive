@@ -67,6 +67,16 @@ function getSummary(
       <br />
       Preferred Ages: {response.preferredAges.split(";").join(", ")}
       <br />
+      {response.formVersion == 0 ? (
+        "(Old form, doesn't have sex requirements.)"
+      ) : (
+        <>
+          Sex: {response.sex}
+          <br />
+          Preferred Sexes: {response.preferredSex.split(";").join(", ")}
+        </>
+      )}
+      <br />
       Gender: {response.gender}
       <br />
       Preferred Gender: {response.preferredGenders.split(";").join(", ")}
@@ -120,6 +130,16 @@ function getSummary(
             Age: {u.age}
             <br />
             Preferred Ages: {u.preferredAges.split(";").join(", ")}
+            <br />
+            {u.formVersion == 0 ? (
+              "(Old form, doesn't have sex requirements.)"
+            ) : (
+              <>
+                Sex: {u.sex}
+                <br />
+                Preferred Sexes: {u.preferredSex.split(";").join(", ")}
+              </>
+            )}
             <br />
             Gender: {u.gender}
             <br />

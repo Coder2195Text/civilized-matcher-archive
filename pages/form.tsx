@@ -34,14 +34,13 @@ export default function Form() {
   const { status, accessToken } = useSession();
   const [errors, setErrors] = useState<string>("");
   const [data, setData] = useState<User | null>(null);
-  bad code
+
   if (status == "unauthenticated") {
     Router.push("/");
     return <></>;
   }
 
   if (progress == "no") {
-
     fetch("/api/getUser")
       .then((res) => {
         if (res.status > 400) Router.push("/unsupported");
@@ -65,7 +64,7 @@ export default function Form() {
             preferredGenders: "",
             radius: 0,
             formVersion: 1,
-            sex: "",
+            sex: "---",
             preferredSex: "",
           };
         response.discordTag = `${value.username}#${value.discriminator}`;
@@ -90,6 +89,15 @@ export default function Form() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <h1>Form</h1>
+      {data?.formVersion == 0 ? (
+        <h3>
+          Alert: If you are seeing this message AND/OR were redirected here, you
+          have to update your biological sex and sex preferences as part of the
+          new update...
+        </h3>
+      ) : (
+        ""
+      )}
       <form
         onSubmit={(e) => {
           e.preventDefault();
@@ -102,11 +110,18 @@ export default function Form() {
             setErrors("Select at least 1 preferred age.");
             return;
           }
-          if (data?.sex == "")
-            if (data?.gender == "---") {
-              setErrors("Select your gender.");
-              return;
-            }
+          if (data?.sex == "---") {
+            setErrors("Select your sex.");
+            return;
+          }
+          if (data?.preferredSex == "") {
+            setErrors("Select at least 1 preferred sex.");
+            return;
+          }
+          if (data?.gender == "---") {
+            setErrors("Select your gender.");
+            return;
+          }
           if (data?.preferredGenders == "") {
             setErrors("Select at least 1 preferred gender.");
             return;
@@ -149,7 +164,7 @@ export default function Form() {
           setSubmitting(true);
           fetch("/api/upsert", {
             method: "POST",
-            body: JSON.stringify(data),
+            body: JSON.stringify({ ...data, formVersion: 1 }),
           })
             .then((res) => res.text())
             .then(() => {
@@ -181,6 +196,29 @@ export default function Form() {
           update={(value: string[]) => {
             //@ts-ignore
             setData({ ...data, preferredAges: value.join(";") });
+          }}
+        />
+        <br />
+        <SelectQuestion
+          value={data!.sex}
+          question="Sex: "
+          name="sex"
+          options={SEXES}
+          update={(value: string) => {
+            setErrors("");
+            //@ts-ignore
+            setData({ ...data, sex: value });
+          }}
+        />
+        <br />
+        <CheckBoxQuestion
+          value={data!.preferredSex}
+          question="Sexes that you can date: "
+          name="preferredSexes"
+          options={SEXES.slice(1)}
+          update={(value: string[]) => {
+            //@ts-ignore
+            setData({ ...data, preferredSex: value.join(";") });
           }}
         />
         <br />

@@ -58,7 +58,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                     OR: [
                         {
                             sex: {
-                                equals: ""
+                                equals: "---"
                             }
                         }, {
                             preferredSex: {
