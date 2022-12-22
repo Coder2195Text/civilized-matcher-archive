@@ -57,9 +57,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 {
                     OR: [
                         {
-                            sex: {
-                                startsWith: "---"
-                            }
+                            formVersion: 0
                         }, {
                             preferredSex: {
                                 contains: response.sex
