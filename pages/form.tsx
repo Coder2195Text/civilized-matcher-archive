@@ -25,6 +25,8 @@ const GENDERS = [
   "Agender",
 ];
 
+const SEXES = ["---", "Man", "Woman"];
+
 export default function Form() {
   const [submitting, setSubmitting] = useState(false);
   const [progress, setProgress] = useState<string>("no");
@@ -32,13 +34,14 @@ export default function Form() {
   const { status, accessToken } = useSession();
   const [errors, setErrors] = useState<string>("");
   const [data, setData] = useState<User | null>(null);
-
+  bad code
   if (status == "unauthenticated") {
     Router.push("/");
     return <></>;
   }
 
   if (progress == "no") {
+
     fetch("/api/getUser")
       .then((res) => {
         if (res.status > 400) Router.push("/unsupported");
@@ -61,6 +64,9 @@ export default function Form() {
             preferredAges: "",
             preferredGenders: "",
             radius: 0,
+            formVersion: 1,
+            sex: "",
+            preferredSex: "",
           };
         response.discordTag = `${value.username}#${value.discriminator}`;
         setData(response);
@@ -96,10 +102,11 @@ export default function Form() {
             setErrors("Select at least 1 preferred age.");
             return;
           }
-          if (data?.gender == "---") {
-            setErrors("Select your gender.");
-            return;
-          }
+          if (data?.sex == "")
+            if (data?.gender == "---") {
+              setErrors("Select your gender.");
+              return;
+            }
           if (data?.preferredGenders == "") {
             setErrors("Select at least 1 preferred gender.");
             return;

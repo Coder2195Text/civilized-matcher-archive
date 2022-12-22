@@ -36,21 +36,41 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
     const data = await prisma.user.findMany({
         where: {
-            id: {
-                notIn: [id]
-            },
-            gender: {
-                in: response.preferredGenders.split(";")
-            },
-            preferredGenders: {
-                contains: response.gender
-            },
-            age: {
-                in: response.preferredAges.split(";").map(a => Number(a))
-            },
-            preferredAges: {
-                contains: String(response.age)
-            }
+            AND: [
+                {
+                    id: {
+                        notIn: [id]
+                    },
+                    gender: {
+                        in: response.preferredGenders.split(";")
+                    },
+                    preferredGenders: {
+                        contains: response.gender
+                    },
+                    age: {
+                        in: response.preferredAges.split(";").map(a => Number(a))
+                    },
+                    preferredAges: {
+                        contains: String(response.age)
+                    }
+                },
+                {
+                    OR: [
+                        {
+                            sex: {
+                                equals: ""
+                            }
+                        }, {
+                            preferredSex: {
+                                contains: response.sex
+                            },
+                            sex: {
+                                in: response.preferredAges.split(";")
+                            },
+                        }
+                    ]
+                }
+            ]
         }
     })
     res.status(200).json(data)

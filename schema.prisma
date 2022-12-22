@@ -1,12 +1,11 @@
 generator client {
-    provider        = "prisma-client-js"
-    previewFeatures = ["referentialIntegrity"]
+    provider = "prisma-client-js"
 }
 
 datasource db {
-    provider             = "mysql"
-    url                  = env("DATABASE_URL")
-    referentialIntegrity = "prisma"
+    provider     = "mysql"
+    url          = env("DATABASE_URL")
+    relationMode = "prisma"
 }
 
 model User {
@@ -20,4 +19,7 @@ model User {
     radius           Int
     desc             String @db.VarChar(2000)
     matchDesc        String @db.VarChar(2000)
+    sex              String @default("---")
+    preferredSex     String @default("Man;Woman")
+    formVersion      Int    @default(0)
 }
