@@ -63,7 +63,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                                 contains: response.sex
                             },
                             sex: {
-                                in: response.preferredAges.split(";")
+                                in: response.preferredSex.split(";")
                             },
                         }
                     ]
