@@ -5,6 +5,12 @@ import { Session } from "next-auth";
 import "bootswatch/dist/vapor/bootstrap.min.css";
 import SSRProvider from "react-bootstrap/SSRProvider";
 
+export function urlToImage(url: string): string {
+  return `https://iili.io/${url
+    .replaceAll("https://freeimage.host/i/", "")
+    .replaceAll("/", "")}.png`;
+}
+
 export default function App({
   Component,
   pageProps: { session, ...pageProps },

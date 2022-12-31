@@ -1,13 +1,23 @@
 import Head from "next/head";
 import { useSession } from "next-auth/react";
 import Router from "next/router";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import SelectQuestion from "../forms/select";
 import { User } from "@prisma/client";
 import { DiscordProfile } from "next-auth/providers/discord";
 import CheckBoxQuestion from "../forms/checkbox";
 import LongAnswer from "../forms/longanswer";
 import Button from "react-bootstrap/Button";
+import Link from "next/link";
+import { urlToImage } from "./_app";
+
+const fileToB64 = (file: File) =>
+  new Promise<string>((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result as string);
+    reader.onerror = (error) => reject(error);
+  });
 
 const AGES = ["---", 13, 14, 15, 16, 17, 18].map((val) => String(val));
 
@@ -34,6 +44,7 @@ export default function Form() {
   const { status, accessToken } = useSession();
   const [errors, setErrors] = useState<string>("");
   const [data, setData] = useState<User | null>(null);
+  const selfieRef = useRef<HTMLInputElement>(null);
 
   if (status == "unauthenticated") {
     Router.push("/");
@@ -66,6 +77,7 @@ export default function Form() {
             formVersion: 1,
             sex: "---",
             preferredSex: "",
+            selfieURL: null,
           };
         response.discordTag = `${value.username}#${value.discriminator}`;
         setData(response);
@@ -99,7 +111,7 @@ export default function Form() {
         ""
       )}
       <form
-        onSubmit={(e) => {
+        onSubmit={async (e) => {
           e.preventDefault();
           if (submitting) return;
           if (isNaN(data?.age!)) {
@@ -161,7 +173,23 @@ export default function Form() {
               return;
             }
           }
+
+          if (data?.selfieURL) {
+            if (!data?.selfieURL.startsWith("https://freeimage.host/i/")) {
+              setErrors(
+                "Invalid, image should be in format of https://freeimage.host/i/xxxxxxx (viewer link)"
+              );
+              return;
+            }
+            try {
+              await fetch(urlToImage(data?.selfieURL));
+            } catch {
+              setErrors("Invalid selfie!!!");
+              return;
+            }
+          }
           setSubmitting(true);
+
           fetch("/api/upsert", {
             method: "POST",
             body: JSON.stringify({ ...data, formVersion: 1 }),
@@ -337,6 +365,46 @@ export default function Form() {
             setData({ ...data, matchDesc: value });
           }}
         />
+        <br />
+        <label htmlFor="text">Selfie (Optional): </label>
+        <div>
+          Use{" "}
+          <Link href="https://freeimage.host/" target="_blank">
+            THIS WEBSITE
+          </Link>{" "}
+          to upload your image. <br />
+          Paste the url (should look like https://freeimage.host/i/xxxxxxx)
+          here.
+        </div>
+        <br />
+        {data?.selfieURL ? (
+          <>
+            <Link href={data?.selfieURL} target="_blank">
+              Link to previously uploaded image
+            </Link>
+            <br />
+          </>
+        ) : (
+          []
+        )}
+        <input
+          className="form-control d-inline w-auto"
+          ref={selfieRef}
+          type="text"
+          name="location"
+          maxLength={200}
+          onChange={(e) => {
+            let val = e.currentTarget.value;
+            setErrors("");
+            //@ts-ignore
+            setData({
+              ...data,
+              selfieURL: val,
+            });
+          }}
+        />
+        <br />
+        <br />
         <div>{errors == "" ? "" : `Form error: ${errors}`}</div>
         <div className="w-100 d-flex justify-content-evenly pb-3">
           <Button

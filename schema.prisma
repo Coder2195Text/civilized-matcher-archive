@@ -9,17 +9,18 @@ datasource db {
 }
 
 model User {
-    id               String @id
-    discordTag       String @unique
+    id               String  @id
+    discordTag       String  @unique
     age              Int
     preferredAges    String
     gender           String
     preferredGenders String
-    location         String @db.VarChar(200)
+    location         String  @db.VarChar(200)
     radius           Int
-    desc             String @db.VarChar(2000)
-    matchDesc        String @db.VarChar(2000)
-    sex              String @default("---")
-    preferredSex     String @default("Man;Woman")
-    formVersion      Int    @default(0)
+    desc             String  @db.VarChar(2000)
+    matchDesc        String  @db.VarChar(2000)
+    sex              String  @default("")
+    preferredSex     String  @default("")
+    formVersion      Int     @default(0)
+    selfieURL        String? @db.VarChar(500)
 }

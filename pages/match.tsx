@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { User } from "@prisma/client";
 import Button from "react-bootstrap/Button";
+import { urlToImage } from "./_app";
 
 function renderPreview(user: User): Array<JSX.Element | string> {
   let array = [];
@@ -21,7 +22,24 @@ function renderPreview(user: User): Array<JSX.Element | string> {
     <br />,
     "User description for match: ",
     <br />,
-    user.matchDesc
+    user.matchDesc,
+    user.selfieURL ? (
+      <>
+        <br />
+        Selfie:
+        <br />
+        <img
+          src={urlToImage(user.selfieURL)}
+          style={{
+            maxWidth: "90vw",
+            maxHeight: "90vh",
+          }}
+          alt=""
+        />
+      </>
+    ) : (
+      <></>
+    )
   );
   return array;
 }
@@ -90,6 +108,24 @@ function getSummary(matches: User[], accepted: boolean[]) {
             Description for match:
             <br />
             {u.matchDesc}
+            <br />
+            {u.selfieURL ? (
+              <>
+                <br />
+                Selfie:
+                <br />
+                <img
+                  src={urlToImage(u.selfieURL)}
+                  style={{
+                    maxWidth: "90vw",
+                    maxHeight: "90vh",
+                  }}
+                  alt=""
+                />
+              </>
+            ) : (
+              []
+            )}
           </div>
         );
       })}
