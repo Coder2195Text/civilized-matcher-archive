@@ -77,6 +77,7 @@ export default function Form() {
             formVersion: 1,
             sex: "---",
             preferredSex: "",
+            //@ts-ignore
             selfieURL: null,
           };
         response.discordTag = `${value.username}#${value.discriminator}`;
