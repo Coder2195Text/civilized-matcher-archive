@@ -378,22 +378,14 @@ export default function Form() {
           here.
         </div>
         <br />
-        {data?.selfieURL ? (
-          <>
-            <Link href={data?.selfieURL} target="_blank">
-              Link to previously uploaded image
-            </Link>
-            <br />
-          </>
-        ) : (
-          []
-        )}
         <input
           className="form-control d-inline w-auto"
           ref={selfieRef}
           type="text"
+          value={data?.selfieURL ? data?.selfieURL : ""}
           name="location"
-          maxLength={200}
+          placeholder="No selfie detected."
+          maxLength={400}
           onChange={(e) => {
             let val = e.currentTarget.value;
             setErrors("");
@@ -403,7 +395,29 @@ export default function Form() {
               selfieURL: val,
             });
           }}
-        />
+          onBlur={(e) => {
+            let val = e.currentTarget.value.trim();
+            setErrors("");
+            //@ts-ignore
+            setData({
+              ...data,
+              selfieURL: val.length > 400 ? val.substring(0, 400) : val,
+            });
+          }}
+        />{" "}
+        <Button
+          type="button"
+          onClick={() => {
+            //@ts-ignore
+            setData({
+              ...data,
+              selfieURL: null,
+            });
+          }}
+          variant="danger"
+        >
+          Delete Selfie
+        </Button>
         <br />
         <br />
         <div>{errors == "" ? "" : `Form error: ${errors}`}</div>
