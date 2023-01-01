@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { signOut, useSession } from "next-auth/react";
+import { signIn, signOut, useSession } from "next-auth/react";
 import Router from "next/router";
 import Link from "next/link";
 import { useState } from "react";
@@ -11,6 +11,7 @@ export default function Dashboard() {
   const [deleting, setDeleting] = useState(false);
   if (status == "unauthenticated") {
     Router.push("/");
+    return <></>;
   }
   return (
     <>

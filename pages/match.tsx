@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { useSession } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import Router from "next/router";
 import Link from "next/link";
 import { useState } from "react";
@@ -141,7 +141,8 @@ export default function Dashboard() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [fetching, setFetching] = useState(false);
   if (status == "unauthenticated") {
-    Router.push("/");
+    signIn("discord");
+    return <></>;
   }
   if (!fetching && !matches) {
     setFetching(true);

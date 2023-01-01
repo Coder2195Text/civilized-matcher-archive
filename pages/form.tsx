@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { useSession } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import Router from "next/router";
 import { useRef, useState } from "react";
 import SelectQuestion from "../forms/select";
@@ -47,7 +47,7 @@ export default function Form() {
   const selfieRef = useRef<HTMLInputElement>(null);
 
   if (status == "unauthenticated") {
-    Router.push("/");
+    signIn("discord");
     return <></>;
   }
 

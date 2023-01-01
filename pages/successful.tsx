@@ -1,12 +1,13 @@
 import Head from "next/head";
-import { useSession } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import Router from "next/router";
 import Link from "next/link";
 
 export default function Dashboard() {
   const { status, data } = useSession();
   if (status == "unauthenticated") {
-    Router.push("/");
+    signIn("discord");
+    return <></>;
   }
   return (
     <>
