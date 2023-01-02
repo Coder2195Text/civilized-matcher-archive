@@ -251,6 +251,10 @@ export default function Form() {
           }}
         />
         <br />
+        <div>
+          Note for the below question, cis male and cis female refers to the
+          default male and female that corresponds with ur birth sex.
+        </div>
         <SelectQuestion
           value={data!.gender}
           question="Gender: "
