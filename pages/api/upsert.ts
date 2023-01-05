@@ -40,7 +40,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 preferredAges: "",
                 preferredGenders: "",
                 radius: 0,
-            }, ...body
+            }, ...body,
+            selfieURL: body.selfieURL?.trim() == "" || !body.selfieURL ? null : body.selfieURL
         }
     })
     res.status(200).send("Successful")
