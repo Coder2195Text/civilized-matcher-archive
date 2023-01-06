@@ -4,7 +4,6 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { getSession } from "next-auth/react";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-    const prisma = new PrismaClient()
     let admin = false;
     if (req.query.password == process.env.CUPID_PASSWORD) {
         admin = true
@@ -17,15 +16,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         res.status(401).send("bad auth")
         return
     }
-    let stat:number=404;
+    let stat: number = 404;
     let resp = await fetch(process.env.DISCORD_WEBHOOK_URL as string, {
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
         method: "POST",
-        body: JSON.stringify({content:req.body})
-    }).then(r=>{
+        body: JSON.stringify({ content: req.body })
+    }).then(r => {
         stat = r.status
         return r.text()
     })

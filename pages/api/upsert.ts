@@ -1,9 +1,10 @@
 import { PrismaClient, User } from "@prisma/client";
 import { NextApiRequest, NextApiResponse } from "next";
 import { getSession } from "next-auth/react";
+const prisma = new PrismaClient()
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-    const prisma = new PrismaClient()
+
     const session = await getSession({ req });
     let admin = false;
     if (req.query.password == process.env.ADMIN_PASS) {
