@@ -24,7 +24,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         res.status(401).send("Bad auth")
         return
     }
-    if (body.selfieURL?.trim() == "" || !body.selfieURL) body.selfieURL = null;
+    //@ts-ignore
+
+    if ((body.selfieURL?.trim() == "" || !body.selfieURL) && !body.keepSelfies) body.selfieURL = null;
     await prisma.user.upsert({
         where: {
             id: body.id
@@ -42,6 +44,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 preferredAges: "",
                 preferredGenders: "",
                 radius: 0,
+                selfieURL: null
             }, ...body
         }
     })
