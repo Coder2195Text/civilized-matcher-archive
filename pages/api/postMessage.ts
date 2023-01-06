@@ -1,7 +1,9 @@
-import { PrismaClient, User } from "@prisma/client";
-import { Webhook } from "discord-webhook-node";
 import { NextApiRequest, NextApiResponse } from "next";
-import { getSession } from "next-auth/react";
+
+const channels = [
+    "https://discord.com/api/webhooks/1052344659298484296/P4RvXZl8uWBhkQO-2hBrM833v8fql1IPv79yg5-xzSfzmdH1u7V59MskWO7NlEGp0PpL",
+    "https://discord.com/api/webhooks/1061028879080374322/y33W-0zGJGvho0-Z7zxJYBXLLgDSV-_hUi0urLZ3O9P5NWWJ-IKdhoHCM_i7YcuUO1AN"
+]
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     let admin = false;
@@ -17,16 +19,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return
     }
     let stat: number = 404;
-    let resp = await fetch(process.env.DISCORD_WEBHOOK_URL as string, {
+    let resp = await Promise.all(channels.map(url => fetch(url as string, {
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
         method: "POST",
         body: JSON.stringify({ content: req.body })
-    }).then(r => {
-        stat = r.status
-        return r.text()
-    })
-    res.status(stat).send(resp)
+    })));
+    res.status(200).send("Sent")
 }

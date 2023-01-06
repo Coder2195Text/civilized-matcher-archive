@@ -119,11 +119,7 @@ function getSummary(
                     "Content-Type": "text/plain",
                   },
                   method: "POST",
-                  body: `<@${userID}> and <@${u.id}>, you have been matched!!!\n**Reason:**\n> ${reason}\nNext time don't be lazy and find yourself a match through <#1041081886031753233>. Humans are so annoying about "romance" or whatever it is, and I have to be the cupid here... Good luck I guess on your match... \n||(UGH HUMANS ARE **SO** ANNOYING)||
-                  **Due to sharing matchmaking across servers**
-                  If you are having trouble looking up their usernames:
-                  https://discordlookup.com/user/${userID}
-                  https://discordlookup.com/user/${u.id}`,
+                  body: `<@${userID}> and <@${u.id}>, you have been matched!!!\n**Reason:**\n> ${reason}\nNext time don't be lazy and find yourself a match through <#1041081886031753233>. Humans are so annoying about "romance" or whatever it is, and I have to be the cupid here... Good luck I guess on your match... \n||(UGH HUMANS ARE **SO** ANNOYING)||\n**Due to sharing matchmaking across servers**\nIf you are having trouble looking up their usernames:\nhttps://discordlookup.com/user/${userID}\nhttps://discordlookup.com/user/${u.id}`,
                 });
                 setResultState(2);
               }}
