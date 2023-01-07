@@ -25,8 +25,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return
     }
     //@ts-ignore
-
-    if ((body.selfieURL?.trim() == "" || !body.selfieURL) && !req.query.keepSelfies) body.selfieURL = null;
+    if ((body.selfieURL?.trim() == "" || !body.selfieURL) && req.query.keepSelfies == undefined) body.selfieURL = null;
     await prisma.user.upsert({
         where: {
             id: body.id
