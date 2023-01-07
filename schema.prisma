@@ -23,4 +23,5 @@ model User {
     preferredSex     String  @default("")
     formVersion      Int     @default(0)
     selfieURL        String? @db.VarChar(500)
+    matchedUser      String?
 }
