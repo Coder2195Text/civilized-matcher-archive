@@ -114,12 +114,15 @@ function getSummary(
                 if (reason == "" || !reason) {
                   reason = "No reason given...";
                 }
-                await fetch(`/api/postMessage?password=${password}`, {
+                await fetch(`/api/matchMake?password=${password}`, {
                   headers: {
-                    "Content-Type": "text/plain",
+                    "Content-Type": "application/json",
                   },
                   method: "POST",
-                  body: `<@${userID}> and <@${u.id}>, you have been matched!!!\n**Reason:**\n> ${reason}\nNext time don't be lazy and find yourself a match through <#1041081886031753233>. Humans are so annoying about "romance" or whatever it is, and I have to be the cupid here... Good luck I guess on your match... \n||(UGH HUMANS ARE **SO** ANNOYING)||\n**Due to sharing matchmaking across servers**\nIf you are having trouble looking up their usernames:\nhttps://discordlookup.com/user/${userID}\nhttps://discordlookup.com/user/${u.id}`,
+                  body: JSON.stringify({
+                    users: [userID, u.id],
+                    reason,
+                  }),
                 });
                 setResultState(2);
               }}
@@ -257,9 +260,16 @@ export default function Dashboard() {
               setErrors("Error: User doesnt exist...");
               return;
             }
+            if (
+              obj.matchedUser !== null &&
+              !confirm(
+                "This person has been matched before. Would you like to matchmake them again?"
+              )
+            )
+              return;
             setResponse(obj);
             let val = await fetch(
-              `/api/getMatches?password=${password}&id=${e.target.value}`
+              `/api/getMatches?password=${password}&id=${e.target.value}&cupid`
             ).then((res) => res.json());
 
             setMatches(val);
@@ -287,6 +297,8 @@ export default function Dashboard() {
               setErrors(
                 "Error: Please put a password or get the password correct."
               );
+              elm.disabled = false;
+              return;
             }
             let list: string[] = await res.json();
             elm.disabled = false;

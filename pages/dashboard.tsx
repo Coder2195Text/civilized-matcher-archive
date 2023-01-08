@@ -5,13 +5,30 @@ import Link from "next/link";
 import { useState } from "react";
 import Image from "next/image";
 import Button from "react-bootstrap/Button";
+import { User } from "@prisma/client";
 
 export default function Dashboard() {
   const { status, data } = useSession();
   const [deleting, setDeleting] = useState(false);
+  const [matchedUser, setMatchedUser] = useState<string | null>("NOT SET");
   if (status == "unauthenticated") {
     Router.push("/");
     return <></>;
+  }
+  if (matchedUser == "NOT SET" || matchedUser == "PROCESSING") {
+    if (matchedUser == "NOT SET") {
+      setMatchedUser("PROCESSING");
+      fetch("/api/getMatchedUser")
+        .then((res) => res.json())
+        .then((val: User) => {
+          setMatchedUser(val ? val.discordTag : null);
+        });
+    }
+    return (
+      <>
+        <h1>Fetching Data...</h1>
+      </>
+    );
   }
   return (
     <>
@@ -44,6 +61,29 @@ export default function Dashboard() {
           <Link href="/match" className="link-primary">
             Matchmake yourself (Find your match)
           </Link>
+
+          {matchedUser ? (
+            <>
+              <br />
+              <h5>Pending Match (by Matchmakers): {matchedUser}</h5>
+              <Button
+                variant="danger"
+                onClick={async (e) => {
+                  let sure = confirm("You sure?");
+                  setMatchedUser("DELETING");
+                  await fetch("/api/rejectMatch");
+                  setMatchedUser(null);
+                }}
+              >
+                {matchedUser == "DELETING"
+                  ? "Deleting..."
+                  : "Reject that Match"}
+              </Button>
+            </>
+          ) : (
+            []
+          )}
+          <br />
         </span>
       </div>
       <hr />
