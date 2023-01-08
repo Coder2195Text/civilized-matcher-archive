@@ -31,7 +31,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         }
     })
     if (data && data.matchedUser) {
-        await prisma.user.updateMany({
+        await Promise.all([await prisma.user.updateMany({
             where: {
                 id: {
                     in:
@@ -42,7 +42,21 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             {
                 matchedUser: null
             }
+        }),
+        await prisma.rejectInfo.update({
+            where: {
+                id: data.id
+            },
+            data: {
+                rejectedBy: {
+                    connect: {
+                        //@ts-ignore
+                        id: data.matchedUser
+                    }
+                }
+            }
         })
+        ])
     }
     res.status(200).send("Rejected match. You may close this tab now.")
 }

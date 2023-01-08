@@ -56,7 +56,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     ])
     if (rejectInfo) {
         blackListed.push(...rejectInfo.rejectedBy.map((e) => e.id), ...rejectInfo.rejectedUsers.map((e) => e.id))
-
     }
     if (!response) {
         res.status(200).json(null)
