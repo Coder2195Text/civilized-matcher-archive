@@ -25,3 +25,9 @@ model User {
     selfieURL        String? @db.VarChar(500)
     matchedUser      String?
 }
+
+model RejectInfo {
+    id            String       @id
+    rejectedUsers RejectInfo[] @relation("UserReject")
+    rejectedBy    RejectInfo[] @relation("UserReject")
+}

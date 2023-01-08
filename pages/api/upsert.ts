@@ -4,7 +4,6 @@ import { getSession } from "next-auth/react";
 const prisma = new PrismaClient()
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-
     const session = await getSession({ req });
     let admin = false;
     if (req.query.password == process.env.ADMIN_PASS) {
@@ -26,7 +25,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
     //@ts-ignore
     if ((body.selfieURL?.trim() == "" || !body.selfieURL) && req.query.keepSelfies == undefined) body.selfieURL = null;
-    await prisma.user.upsert({
+    await Promise.all([prisma.rejectInfo.upsert({
+        where: {
+            id: body.id
+        },
+        update: {},
+        create: {
+            id: body.id,
+        }
+    }), prisma.user.upsert({
         where: {
             id: body.id
         },
@@ -46,6 +53,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 selfieURL: null
             }, ...body
         }
-    })
+    })])
     res.status(200).send("Successful")
 }
