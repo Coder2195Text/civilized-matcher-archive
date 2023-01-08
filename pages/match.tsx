@@ -133,6 +133,38 @@ function getSummary(matches: User[], accepted: boolean[]) {
   );
 }
 
+function BlackListButton({
+  confirmCount,
+  onConfirm,
+}: {
+  confirmCount: number;
+  onConfirm: Function;
+}) {
+  const [count, setCount] = useState(confirmCount);
+  const [actionState, setActionState] = useState(0);
+  return (
+    <Button
+      variant="dark"
+      onClick={async () => {
+        if (count !== 0) {
+          setCount(count - 1);
+          return;
+        }
+        setActionState(1);
+        await onConfirm();
+        setCount(confirmCount);
+        setActionState(0);
+      }}
+    >
+      {count == 0
+        ? actionState == 0
+          ? "Click to blacklist"
+          : "Blacklisting..."
+        : `Click ${count} times to confirm blacklist`}
+    </Button>
+  );
+}
+
 export default function Dashboard() {
   const [response, setResponse] = useState<User>();
   const { status, data } = useSession();
@@ -197,6 +229,17 @@ export default function Dashboard() {
                 Reject
               </Button>
             </div>
+            <h4>
+              Blacklist is permanent (DO THIS ONLY IF YOU HAVE DATED THEM
+              BEFORE)
+            </h4>
+            <BlackListButton
+              confirmCount={5}
+              onConfirm={async () => {
+                await fetch(`/api/blacklist?id=${matches![currentIndex].id}`);
+                setCurrentIndex(currentIndex + 1);
+              }}
+            />
           </div>
         ) : (
           <div>

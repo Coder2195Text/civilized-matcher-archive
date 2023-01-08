@@ -29,11 +29,35 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
     //@ts-ignore
     let id = adminID ? adminID : session?.user?.id;
-    const response = await prisma.user.findUnique({
-        where: {
-            id: id
-        }
-    })
+    const blackListed: string[] = []
+    const [response, rejectInfo] = await Promise.all([
+        prisma.user.findUnique({
+            where: {
+                id: id
+            }
+        }),
+        prisma.rejectInfo.findUnique({
+            where: {
+                id: id
+            },
+            select: {
+                rejectedBy: {
+                    select: {
+                        id: true
+                    }
+                },
+                rejectedUsers: {
+                    select: {
+                        id: true
+                    }
+                }
+            }
+        })
+    ])
+    if (rejectInfo) {
+        blackListed.push(...rejectInfo.rejectedBy.map((e) => e.id), ...rejectInfo.rejectedUsers.map((e) => e.id))
+
+    }
     if (!response) {
         res.status(200).json(null)
         return
@@ -43,7 +67,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             AND: [
                 {
                     id: {
-                        notIn: [id]
+                        notIn: [id, ...blackListed]
                     },
                     gender: {
                         in: response.preferredGenders.split(";")
@@ -56,7 +80,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                     },
                     preferredAges: {
                         contains: String(response.age)
-                    }
+                    },
                 },
                 {
                     OR: [
