@@ -265,8 +265,10 @@ export default function Dashboard() {
               !confirm(
                 "This person has been matched before. Would you like to matchmake them again?"
               )
-            )
+            ) {
+              setErrors("");
               return;
+            }
             setResponse(obj);
             let val = await fetch(
               `/api/getMatches?password=${password}&id=${e.target.value}&cupid`
