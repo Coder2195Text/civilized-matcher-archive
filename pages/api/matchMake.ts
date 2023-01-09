@@ -3,10 +3,6 @@ import { NextApiRequest, NextApiResponse } from "next";
 
 
 const prisma = new PrismaClient()
-const channels = [
-    "https://discord.com/api/webhooks/1052344659298484296/P4RvXZl8uWBhkQO-2hBrM833v8fql1IPv79yg5-xzSfzmdH1u7V59MskWO7NlEGp0PpL",
-    "https://discord.com/api/webhooks/1061028879080374322/y33W-0zGJGvho0-Z7zxJYBXLLgDSV-_hUi0urLZ3O9P5NWWJ-IKdhoHCM_i7YcuUO1AN"
-]
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     let admin = false;
@@ -60,7 +56,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             matchedUser: req.body.users[0]
         }
     })
-    let resp = await Promise.all(channels.map(url => fetch(url as string, {
+    let resp = await fetch(process.env.MATCHED_CHANNEL as string, {
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
@@ -71,6 +67,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         
         :warning: **REJECT MATCH** :warning:\nClick the link below if you don't like your match.\n${process.env.NEXTAUTH_URL}/api/rejectMatch`
         })
-    })));
+    })
     res.status(200).send("Sent")
 }

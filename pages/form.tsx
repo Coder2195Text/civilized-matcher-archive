@@ -19,7 +19,18 @@ const fileToB64 = (file: File) =>
     reader.onerror = (error) => reject(error);
   });
 
-const AGES = ["---", 13, 14, 15, 16, 17, 18].map((val) => String(val));
+function range(start: number, stop: number, step = 1): number[] {
+  return Array(Math.ceil((stop - start) / step))
+    .fill(start)
+    .map((x, y) => x + y * step);
+}
+const AGES = [
+  "---",
+  ...range(
+    Number(process.env.NEXT_PUBLIC_MIN_AGE),
+    Number(process.env.NEXT_PUBLIC_MAX_AGE) + 1
+  ),
+].map((val) => String(val));
 
 const GENDERS = [
   "---",
