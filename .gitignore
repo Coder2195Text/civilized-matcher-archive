@@ -6,7 +6,7 @@
 .pnp.js
 
 /pages/api/query.ts
-
+.gitignore
 # testing
 /coverage
 
