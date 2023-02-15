@@ -204,7 +204,7 @@ export default function Dashboard() {
         {currentIndex !== matches.length ? (
           <div>
             <h1>
-              Accept bitch {currentIndex + 1}/{matches.length}?
+              Accept bitch #{currentIndex + 1}/{matches.length}?
             </h1>
             <div>{renderPreview(response!)}</div>
             <br />
@@ -257,7 +257,7 @@ export default function Dashboard() {
   } else
     return (
       <>
-        <h1>Fetching your response and your matches... (may take a bit)</h1>
+        <h1>AI is selecting bitches for you...</h1>
       </>
     );
 }
