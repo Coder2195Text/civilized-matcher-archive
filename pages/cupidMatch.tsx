@@ -335,7 +335,9 @@ export default function Dashboard() {
         </Head>
         {currentIndex !== matches.length ? (
           <div>
-            <h1>Accept these matches?</h1>
+            <h1>
+              Accept match {currentIndex + 1}/{matches.length}?
+            </h1>
             <div>{renderPreview(response!)}</div>
             <br />
             <div>{renderPreview(matches![currentIndex])}</div>

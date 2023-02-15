@@ -16,7 +16,7 @@ export default function Dashboard() {
     return <></>;
   }
   if (matchedUser == "NOT SET" || matchedUser == "PROCESSING") {
-    if (matchedUser == "NOT SET") {
+    if (matchedUser == "NOT SET" && status == "authenticated") {
       setMatchedUser("PROCESSING");
       fetch("/api/getMatchedUser")
         .then((res) => res.json())
@@ -59,7 +59,7 @@ export default function Dashboard() {
           </Link>
           <br />
           <Link href="/match" className="link-primary">
-            Matchmake yourself (Find your match)
+            AI Guided Self Bitch Finding
           </Link>
 
           {matchedUser ? (
@@ -88,7 +88,7 @@ export default function Dashboard() {
       </div>
       <hr />
       <div className="row g-0 w-100">
-        <h4>Are you a cupid guiding lazy people to their matches?</h4>
+        <h4>Are you a cupid guiding lazy people to their bitches?</h4>
         <br />
         <div>
           If so, go{" "}
