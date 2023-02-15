@@ -55,18 +55,16 @@ function getSummary(matches: User[], accepted: boolean[]) {
   if (finalMatches.length == 0)
     return (
       <div>
-        No matches found. You either couldn't fullfill both your and your
-        matches gender and age requirements, or you rejected all your matches.
-        Check back in a day or so.
+        No bitches found. Either you rejected all your bitches or you don't meet
+        your bitches
       </div>
     );
   return (
     <div>
       <div>
-        Choose the one you like most, then DM them. If it fails, come back to
-        this website to get another match by "Find Your Match" on the home page.
-        If you guys work out, come back here and press "Delete Form" on the home
-        page.
+        Choose the bitch you like most & DM them. If it fails, come back to this
+        website to get another match. If you guys work out, come back here and
+        press "Delete Form" on the home page.
       </div>
       <br />
       {finalMatches.map((u) => {
