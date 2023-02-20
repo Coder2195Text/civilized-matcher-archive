@@ -176,8 +176,7 @@ export default function Form() {
               )
             ) {
               setErrors(
-                `May have forgetten to put in age, since you are an ${
-                  data?.age
+                `May have forgetten to put in age, since you are an ${data?.age
                 } year old who prefers people of ages ${data?.preferredAges.replaceAll(
                   ";",
                   ", "
@@ -292,23 +291,15 @@ export default function Form() {
         <br />
         <label htmlFor="text">Location: </label>
         <div>
-          Send your town/city or one that is 50km away from your irl location if
-          you aren't comfy with your real location.
+          Put in your town/city, (ie, New York City, London, Troy NY,
+          Martinsville, Virgina, US).
+          <br />
+          Are you not comfortable putting in your town? Put one that is at most
+          50km away from you.
           <br />
           50km takes a person 10 hours to walk (as a reference)
           <br />
-          <b>
-            DO NOT GIVE ME ANY CONTINENT, COUNTRY, STATE, OR PROVINCE NAMES BY
-            THEMSELVES!!!
-            <br />
-            <u>
-              Include the province and country name along with the city/town if
-              the city/town isn't a well known one, or if there are other towns
-              with the same name.
-            </u>
-            <br />
-            Get this part right, or no bf/gf for you.
-          </b>
+          <b>Get this part right, or no bf/gf for you.</b>
         </div>
         <input
           className="form-control d-inline w-auto"
