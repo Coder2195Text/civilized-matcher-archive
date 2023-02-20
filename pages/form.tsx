@@ -291,7 +291,7 @@ export default function Form() {
         <br />
         <label htmlFor="text">Location: </label>
         <div>
-          Put in your town/city, (ie, New York City, London, Troy NY,
+          Put in your town/city, (ie, New York City; London; Troy, NY;
           Martinsville, Virgina, US).
           <br />
           Are you not comfortable putting in your town? Put one that is at most
